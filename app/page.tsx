@@ -1,54 +1,118 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Page() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#f0f4f1] to-white text-gray-800 flex flex-col items-center px-6">
+    <main className="min-h-screen bg-black text-white px-6">
 
       {/* Hero Section */}
-      <section className="max-w-4xl text-center py-24">
-        <h1 className="text-4xl md:text-6xl font-bold text-[#1f3b2d]">
-          Recover Stronger. Return Confident.
-        </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-600">
-          Physio‑guided injury rehab and wellness tracking for footballers.
-        </p>
-        <button className="mt-8 px-6 py-3 bg-[#2e5f47] text-white rounded-full hover:bg-[#244c38] transition">
+      <section className="relative flex flex-col items-center text-center py-32">
+        
+        {/* Glowing Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00FF6A15] to-transparent blur-3xl"></div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl font-extrabold tracking-tight"
+        >
+          Recover Stronger.
+          <span className="block text-[#00FF6A]">Return Confident.</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="mt-6 text-lg md:text-2xl text-gray-300 max-w-2xl"
+        >
+          Elite physio‑guided injury rehab and performance tracking for footballers.
+        </motion.p>
+
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-10 px-8 py-4 bg-[#00FF6A] text-black font-semibold rounded-full text-lg hover:bg-[#00cc55] transition-all shadow-[0_0_20px_#00FF6A]"
+        >
           Start Your Recovery
-        </button>
+        </motion.button>
       </section>
 
-      {/* Injury Tracking Section */}
-      <section className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-3 gap-8 py-16">
-        <div className="p-6 bg-white shadow-sm rounded-xl border border-gray-100">
-          <h3 className="text-xl font-semibold text-[#1f3b2d]">Log Your Injury</h3>
-          <p className="mt-2 text-gray-600">
+      {/* Features Section */}
+      <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 py-24">
+
+        {/* Card 1 */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="p-8 bg-[#0a0a0a] rounded-2xl border border-[#00FF6A33] shadow-[0_0_20px_#00FF6A22]"
+        >
+          <h3 className="text-2xl font-bold text-[#00FF6A]">Log Your Injury</h3>
+          <p className="mt-3 text-gray-400">
             Track pain, mobility, swelling, and load tolerance with daily check‑ins.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="p-6 bg-white shadow-sm rounded-xl border border-gray-100">
-          <h3 className="text-xl font-semibold text-[#1f3b2d]">Follow Your Rehab Plan</h3>
-          <p className="mt-2 text-gray-600">
+        {/* Card 2 */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          viewport={{ once: true }}
+          className="p-8 bg-[#0a0a0a] rounded-2xl border border-[#00FF6A33] shadow-[0_0_20px_#00FF6A22]"
+        >
+          <h3 className="text-2xl font-bold text-[#00FF6A]">Follow Your Rehab Plan</h3>
+          <p className="mt-3 text-gray-400">
             Physio‑approved exercises with progression steps to guide your recovery.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="p-6 bg-white shadow-sm rounded-xl border border-gray-100">
-          <h3 className="text-xl font-semibold text-[#1f3b2d]">Monitor Your Progress</h3>
-          <p className="mt-2 text-gray-600">
+        {/* Card 3 */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="p-8 bg-[#0a0a0a] rounded-2xl border border-[#00FF6A33] shadow-[0_0_20px_#00FF6A22]"
+        >
+          <h3 className="text-2xl font-bold text-[#00FF6A]">Monitor Your Progress</h3>
+          <p className="mt-3 text-gray-400">
             Visualize your recovery timeline and readiness score as you improve.
           </p>
-        </div>
+        </motion.div>
+
       </section>
 
-      {/* Mental Wellness Section */}
-      <section className="max-w-3xl text-center py-12">
-        <h2 className="text-3xl font-semibold text-[#1f3b2d]">Stay Mentally Strong</h2>
-        <p className="mt-3 text-gray-600">
+      {/* Mental Wellness */}
+      <section className="text-center max-w-3xl mx-auto py-20">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="text-4xl font-bold text-[#00FF6A]"
+        >
+          Stay Mentally Strong
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+          viewport={{ once: true }}
+          className="mt-4 text-gray-400 text-lg"
+        >
           Football injuries affect confidence and mindset. Track motivation, focus, and mental resilience throughout your recovery.
-        </p>
+        </motion.p>
       </section>
 
       {/* Footer */}
-      <footer className="py-10 text-gray-500 text-sm">
+      <footer className="py-10 text-center text-gray-500 text-sm">
         © {new Date().getFullYear()} RecoveryPulse. All rights reserved.
       </footer>
     </main>

@@ -8,20 +8,20 @@ import { useEffect } from "react";
 export default function Page() {
 
   // ⭐ SAFE PARALLAX SCRIPT
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+ useEffect(() => {
+  const handleMove = (e: MouseEvent) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
 
     document.querySelectorAll<HTMLElement>(".parallax").forEach((el) => {
-  el.style.transform = `translate(${x}px, ${y}px)`;
-});
+      el.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  };
 
+  window.addEventListener("mousemove", handleMove);
+  return () => window.removeEventListener("mousemove", handleMove);
+}, []);
 
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, []);
 
   return (
     <main className="min-h-screen bg-black text-white px-6">

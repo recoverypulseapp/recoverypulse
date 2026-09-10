@@ -9,7 +9,8 @@ export default function CountUp(
 
   useEffect(() => {
     let start = 0;
-    const end = parseFloat(value.replace(/[^0-9.-]/g, ""));
+    const end = parseFloat(String(value).replace(/[^0-9.-]/g, ""));
+
     if (isNaN(end)) return;
 
     const step = end / (duration / 16);

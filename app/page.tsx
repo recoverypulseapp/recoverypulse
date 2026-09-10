@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "./framer-motion";
+import { motion } from "./motion";
 import Reveal from "./components/Reveal";
 import CountUp from "./components/CountUp";
 import { useEffect } from "react";
@@ -9,14 +9,15 @@ export default function Page() {
 
   // ⭐ SAFE PARALLAX SCRIPT
   useEffect(() => {
-    const handleMove = (e) => {
+    const handleMove = (e: MouseEvent) => {
+
       const x = (e.clientX / window.innerWidth - 0.5) * 20;
       const y = (e.clientY / window.innerHeight - 0.5) * 20;
 
-      document.querySelectorAll(".parallax").forEach((el) => {
-        el.style.transform = `translate(${x}px, ${y}px)`;
-      });
-    };
+    document.querySelectorAll<HTMLElement>(".parallax").forEach((el) => {
+  el.style.transform = `translate(${x}px, ${y}px)`;
+});
+
 
     window.addEventListener("mousemove", handleMove);
     return () => window.removeEventListener("mousemove", handleMove);

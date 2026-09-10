@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+export default function CountUp(
+  { value, duration = 1200 }: { value: number | string; duration?: number }
+) {
 
-export default function CountUp({ value, duration = 1200 }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {

@@ -9,10 +9,12 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(e) {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     const res = await signIn("credentials", {
       email,
@@ -20,7 +22,9 @@ export default function LoginPage() {
       redirect: false,
     });
 
-    if (res.error) {
+    setLoading(false);
+
+    if (res?.error) {
       setError("Invalid email or password");
       return;
     }
@@ -29,35 +33,75 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form className="bg-white p-6 rounded shadow-md w-full max-w-sm" onSubmit={handleLogin}>
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
+    <main className="min-h-screen bg-black flex items-center justify-center px-6 py-10">
+      <div className="w-full max-w-md bg-neutral-900 border border-neutral-800 rounded-2xl p-10 shadow-[0_0_40px_rgba(0,255,106,0.15)]">
 
-        {error && <p className="text-red-500 mb-3">{error}</p>}
+        {/* Logo + Title */}
+        <div className="flex flex-col items-center mb-8">
+          <div className="w-16 h-16 rounded-full bg-[#00FF6A] flex items-center justify-center text-black font-bold text-2xl">
+            RP
+          </div>
+          <h1 className="text-white text-3xl font-semibold mt-4">
+            Welcome Back
+          </h1>
+          <p className="text-gray-400 text-sm mt-1">
+            Log in to continue your recovery journey
+          </p>
+        </div>
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 border rounded mb-4"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        {/* Form */}
+        <form className="flex flex-col gap-6" onSubmit={handleLogin}>
+          {error && (
+            <p className="text-red-500 text-sm bg-red-500/10 p-2 rounded">
+              {error}
+            </p>
+          )}
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 border rounded mb-4"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+          <div>
+            <label className="text-gray-300 text-sm">Email</label>
+            <input
+              type="email"
+              className="w-full mt-2 px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-xl text-white focus:border-[#00FF6A] outline-none transition"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+              required
+            />
+          </div>
 
-        <button className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
-          Login
-        </button>
-      </form>
-    </div>
+          <div>
+            <label className="text-gray-300 text-sm">Password</label>
+            <input
+              type="password"
+              className="w-full mt-2 px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-xl text-white focus:border-[#00FF6A] outline-none transition"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+              required
+            />
+          </div>
+
+          <button
+            disabled={loading}
+            className="
+              w-full mt-4 py-3 bg-[#00FF6A] text-black font-semibold rounded-xl
+              hover:bg-[#00cc55] transition disabled:opacity-50 disabled:cursor-not-allowed
+            "
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+
+        {/* Extra Links */}
+        <div className="text-center mt-6">
+          <p className="text-gray-400 text-sm">
+            Don’t have an account?{" "}
+            <a href="/register" className="text-[#00FF6A] hover:underline">
+              Create one
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
   );
 }
-

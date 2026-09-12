@@ -1,87 +1,179 @@
-export default function Dashboard() {
-  return (
-    <section className="max-w-6xl mx-auto py-20">
+"use client";
 
+import Reveal from "../components/Reveal";
+import CountUp from "../components/CountUp";
+
+export default function DashboardPage() {
+  return (
+    <main
+      className="
+        min-h-screen 
+        bg-black 
+        text-white 
+        px-4 sm:px-6 md:px-10 
+        pt-[env(safe-area-inset-top)] 
+        pb-[env(safe-area-inset-bottom)] 
+        scroll-smooth
+      "
+    >
       {/* HEADER */}
-      <div className="mb-16 text-center">
-        <h1 className="text-5xl font-extrabold text-white drop-shadow-[0_0_25px_#00FF6A]">
-          Your Dashboard
-        </h1>
-        <p className="text-gray-300 mt-3 text-lg">
-          Track your recovery, performance, and readiness with elite precision.
-        </p>
+      <div className="mt-6 mb-10">
+        <Reveal>
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Your Dashboard
+          </h1>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <p className="text-gray-400 mt-2 text-base sm:text-lg max-w-md">
+            Track your recovery, performance, and readiness with elite precision.
+          </p>
+        </Reveal>
       </div>
 
-      {/* TOP METRICS */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
-        {[
-          ["Recovery Score", "68"],
-          ["Pain Level", "3/10"],
-          ["Mobility", "78/100"],
-          ["Confidence", "21"],
-        ].map(([label, value], i) => (
+      {/* METRICS GRID */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {/* Recovery Score */}
+        <Reveal>
           <div
-            key={i}
             className="
-              p-8 rounded-2xl bg-black/40 backdrop-blur-xl
-              border border-[#00FF6A55]
-              shadow-[0_0_25px_#00FF6A33]
-              hover:shadow-[0_0_40px_#00FF6A55]
-              transition-all duration-300
+              bg-[#0A0A0A] 
+              border border-[#00FF6A22] 
+              rounded-2xl 
+              p-6 
+              shadow-[0_0_20px_rgba(0,255,106,0.15)]
+              transition-transform 
+              hover:scale-[1.02]
             "
           >
-            <p className="text-gray-400 text-sm tracking-wide">{label}</p>
-            <p className="text-4xl font-extrabold text-[#00FF6A] mt-2 drop-shadow-[0_0_15px_#00FF6A]">
-              {value}
+            <p className="text-gray-300 text-sm">Recovery Score</p>
+            <p className="text-4xl font-bold text-[#00FF6A] mt-2">
+              <CountUp value={68} />
             </p>
           </div>
-        ))}
-      </div>
+        </Reveal>
 
-      {/* TODAY'S SUMMARY */}
-      <div
-        className="
-          p-10 rounded-2xl bg-black/40 backdrop-blur-xl
-          border border-[#00FF6A33]
-          shadow-[0_0_30px_#00FF6A22]
-          mb-20
-        "
-      >
-        <h2 className="text-3xl font-bold text-white mb-4 drop-shadow-[0_0_20px_#00FF6A]">
-          Today’s Summary
-        </h2>
-        <p className="text-gray-300 leading-relaxed text-lg">
-          Your recovery is accelerating. Mobility is improving, pain is decreasing,
-          and your readiness score is trending upward. Stay consistent with your rehab plan
-          to maintain elite progress.
-        </p>
-      </div>
-
-      {/* QUICK ACTIONS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-        {[
-          ["Log Today’s Injury Check‑In", "Record pain, swelling, mobility, and notes."],
-          ["Start Your Rehab Exercises", "Complete today’s physio‑approved routine."],
-          ["View Your Progress Timeline", "See how your recovery is improving over time."],
-        ].map(([title, desc], i) => (
+        {/* Pain Level */}
+        <Reveal delay={0.1}>
           <div
-            key={i}
             className="
-              p-10 rounded-2xl bg-black/40 backdrop-blur-xl
-              border border-[#00FF6A55]
-              shadow-[0_0_25px_#00FF6A33]
-              hover:shadow-[0_0_40px_#00FF6A55]
-              transition-all duration-300
+              bg-[#0A0A0A] 
+              border border-[#00FF6A22] 
+              rounded-2xl 
+              p-6 
+              shadow-[0_0_20px_rgba(255,0,0,0.15)]
+              transition-transform 
+              hover:scale-[1.02]
             "
           >
-            <h3 className="text-2xl font-bold text-[#00FF6A] mb-3 drop-shadow-[0_0_15px_#00FF6A]">
-              {title}
-            </h3>
-            <p className="text-gray-300 leading-relaxed">{desc}</p>
+            <p className="text-gray-300 text-sm">Pain Level</p>
+            <p className="text-4xl font-bold text-red-400 mt-2">
+              <CountUp value={3} />/10
+            </p>
           </div>
-        ))}
+        </Reveal>
+
+        {/* Mobility */}
+        <Reveal delay={0.2}>
+          <div
+            className="
+              bg-[#0A0A0A] 
+              border border-[#00FF6A22] 
+              rounded-2xl 
+              p-6 
+              shadow-[0_0_20px_rgba(0,255,106,0.15)]
+              transition-transform 
+              hover:scale-[1.02]
+            "
+          >
+            <p className="text-gray-300 text-sm">Mobility</p>
+            <p className="text-4xl font-bold text-[#00FF6A] mt-2">
+              <CountUp value={78} />/100
+            </p>
+          </div>
+        </Reveal>
+
       </div>
 
-    </section>
+      {/* SECTION DIVIDER */}
+      <div className="my-12 h-px bg-[#1f1f1f]" />
+
+      {/* NEXT STEPS */}
+      <Reveal>
+        <h2 className="text-2xl font-bold text-[#00FF6A] mb-4">
+          Next Steps
+        </h2>
+      </Reveal>
+
+      <div className="flex flex-col gap-6">
+
+        <Reveal delay={0.1}>
+          <div
+            className="
+              bg-[#0A0A0A] 
+              border border-[#00FF6A22] 
+              rounded-xl 
+              p-5 
+              shadow-[0_0_15px_rgba(0,255,106,0.1)]
+              hover:scale-[1.02] 
+              transition-transform
+            "
+          >
+            <p className="text-lg font-semibold text-white">
+              Log Today’s Pain & Mobility
+            </p>
+            <p className="text-gray-400 text-sm mt-1">
+              Keep your recovery data accurate and up to date.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <div
+            className="
+              bg-[#0A0A0A] 
+              border border-[#00FF6A22] 
+              rounded-xl 
+              p-5 
+              shadow-[0_0_15px_rgba(0,255,106,0.1)]
+              hover:scale-[1.02] 
+              transition-transform
+            "
+          >
+            <p className="text-lg font-semibold text-white">
+              Continue Your Rehab Plan
+            </p>
+            <p className="text-gray-400 text-sm mt-1">
+              Follow your physio‑approved exercises for today.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.3}>
+          <div
+            className="
+              bg-[#0A0A0A] 
+              border border-[#00FF6A22] 
+              rounded-xl 
+              p-5 
+              shadow-[0_0_15px_rgba(0,255,106,0.1)]
+              hover:scale-[1.02] 
+              transition-transform
+            "
+          >
+            <p className="text-lg font-semibold text-white">
+              Review Your Progress Timeline
+            </p>
+            <p className="text-gray-400 text-sm mt-1">
+              See how your recovery is improving week by week.
+            </p>
+          </div>
+        </Reveal>
+
+      </div>
+
+      <div className="h-20" />
+    </main>
   );
 }

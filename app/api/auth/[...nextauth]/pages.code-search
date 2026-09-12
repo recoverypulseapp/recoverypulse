@@ -1,0 +1,10 @@
+# Query: pages
+# ContextLines: 1
+
+4 results - 4 files
+
+app\tailwind.config.ts:
+content: [
+  "./app/**/*.{ts,tsx,js,jsx}",
+  "./components/**/*.{ts,tsx,js,jsx}",
+]
